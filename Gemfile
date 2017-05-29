@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.4.0'
 
 gem 'bcrypt', '~> 3.1.7'
+gem 'faker'
 gem 'knock', '~> 2.1.1'
 gem 'rails', '~> 5.1'
 gem 'pg', '~> 0.2'
