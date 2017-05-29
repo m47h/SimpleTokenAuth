@@ -4,7 +4,7 @@ class TransfersController < ApplicationController
 
   # GET /transfers
   def index
-    @transfers = Transfer.all
+    @transfers = current_user.transfers
 
     render json: @transfers
   end

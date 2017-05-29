@@ -16,3 +16,20 @@ User.create!(
         password_confirmation: password,
     )
 end
+
+50.times do |i|
+  account_number_from = Faker::Number.number(18)
+  account_number_to   = Faker::Number.number(18)
+  country_code_from   = "USD"
+  country_code_to     = "EUR"
+  amount_pennies      = Faker::Number.number(3)
+  user                = User.find(Faker::Number.between(1,10))
+  Transfer.create!(
+    account_number_from:  account_number_from,
+    account_number_to:    account_number_to,
+    country_code_from:    country_code_from,
+    country_code_to:      country_code_to,
+    amount_pennies:       amount_pennies,
+    user:                 user
+  )
+end
