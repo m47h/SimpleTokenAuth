@@ -6,7 +6,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
 gem 'knock', '~> 2.1.1'
 gem 'rails', '~> 5.1'
-gem 'pg', '~> 0.2'
+gem 'pg', '~> 0.20'
 gem 'puma', '~> 3.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'

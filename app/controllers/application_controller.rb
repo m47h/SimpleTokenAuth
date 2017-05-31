@@ -9,4 +9,11 @@ class ApplicationController < ActionController::API
     :unauthorized
   end
   
+  #only admin or owner got permission
+  def check_permission
+    unless current_user.admin? || (current_user == @user)
+      render json: { status: 404, error: "Not Found" }, status: 404
+    end
+  end
+  
 end

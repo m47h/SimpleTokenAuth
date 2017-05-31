@@ -1,10 +1,12 @@
 class TransfersController < ApplicationController
   before_action :authenticate_user
+  before_action :set_user
   before_action :set_transfer, only: [:show, :update, :destroy]
+  before_action :check_permission
 
   # GET /transfers
   def index
-    @transfers = current_user.transfers
+    @transfers = @user.transfers
 
     render json: @transfers
   end
@@ -17,9 +19,9 @@ class TransfersController < ApplicationController
   # POST /transfers
   def create
     @transfer = Transfer.new(transfer_params)
-
+    @transfer.user = @user
     if @transfer.save
-      render json: @transfer, status: :created, location: @transfer
+      render json: @transfer, status: :created, location: [current_user, @transfer]
     else
       render json: @transfer.errors, status: :unprocessable_entity
     end
@@ -42,7 +44,11 @@ class TransfersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_transfer
-      @transfer = Transfer.find(params[:id])
+      @transfer = @user.transfers.find(params[:id])
+    end
+    
+    def set_user
+      @user = User.find(params[:user_id])
     end
 
     # Only allow a trusted parameter "white list" through.
